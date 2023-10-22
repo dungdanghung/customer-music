@@ -20,11 +20,11 @@ return new class extends Migration
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
             $table->enum('gender', [1, 0])->default(1);
-            $table->string('email')->unique();
-            $table->string('phoneNumber')->unique();
-            $table->string('avartar');
+            $table->string('email')->unique()->nullable();
+            $table->string('phoneNumber')->unique()->nullable();
+            $table->string('avartar')->default('user.png');
             $table->string('password');
-            $table->bigInteger('heart');
+            $table->bigInteger('heart')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

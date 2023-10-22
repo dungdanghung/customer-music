@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutherController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,12 @@ use App\Http\Controllers\AutherController;
 */
 
 Route::prefix('/auth')->controller(AutherController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::post('/login', 'login');
     Route::post('/register', 'register');
     Route::post('logout', 'logout')->middleware('auth:sanctum');
     Route::post('change-password', 'changePassword')->middleware('auth:sanctum');
 });
 
-Route::prefix('/user')->controller(AutherController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('logout', 'logout')->middleware('auth:sanctum');
-    Route::post('change-password', 'changePassword')->middleware('auth:sanctum');
+Route::prefix('/user')->controller(UserController::class)->group(function () {
+    Route::get('/getuser', 'getuser')->middleware('auth:sanctum');
 });

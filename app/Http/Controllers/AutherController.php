@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Helper\Reply;
 use App\Models\Songs;
-use Illuminate\Support\Facades\Hash;
+use App\Models\TokenAbility;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNan;
 
 class AutherController extends Controller
@@ -24,10 +25,9 @@ class AutherController extends Controller
             return Reply::error('auth.errors.passwordIncorrect');
         }
 
-        $token = $user->createToken('Token')->accessToken;
+        $token = $user->createToken('Admin-Token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
             'token' => $token
         ]);
     }

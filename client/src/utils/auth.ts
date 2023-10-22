@@ -6,7 +6,9 @@ export async function reqLogin(username: string, password: string) {
             username: username,
             password: password
         })
-        return rs
+        if (rs.status == 200) {
+            return rs.data.token as string;
+        }
     } catch (error: any) {
         throw new Error(error)
     }

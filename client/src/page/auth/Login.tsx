@@ -1,18 +1,28 @@
 import { createSignal } from "solid-js";
 import { reqLogin } from "../../utils/auth"
 import { getuser } from "../../utils/user"
+import { useUserRedux } from "../../redux/index"
+import { useNavigate } from "@solidjs/router"
 import "./Login.scss"
 
 export default function Login() {
     const [username, setusername] = createSignal('')
     const [password, setpassword] = createSignal('')
+    const navigate = useNavigate();
+    const [, setuser] = useUserRedux()
 
     function HandleLogin() {
         reqLogin(username(), password())
             .then((rs) => {
                 if (rs) {
-                    // window.localStorage.setItem('token', JSON.stringify(rs))
-                    // getuser()
+                    window.localStorage.setItem('token', JSON.stringify(rs))
+                    getuser()
+                        .then((rs) => {
+                            if (rs) {
+                                setuser(rs)
+                                navigate("/home");
+                            }
+                        })
                 }
             })
     }
@@ -40,7 +50,7 @@ export default function Login() {
                         <button onClick={HandleLogin} >Login</button>
                     </div>
                     <div class="signup-link">
-                        Not a member? <a href="#">sign up now</a>
+                        Not a member? <a href="/register">sign up now</a>
                     </div>
                 </div>
             </div>

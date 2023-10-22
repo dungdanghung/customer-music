@@ -1,6 +1,8 @@
 import { Router, Route, Routes } from "@solidjs/router"
 import Login from './page/auth/Login'
 import Register from './page/auth/Register'
+import Home from "./page/home/home"
+
 import './App.css'
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
         <Routes>
           <Route path={'login'} component={Login} />
           <Route path={'register'} component={Register} />
+          <Route path={'home'} component={Home} />
         </Routes>
       </Router>
     </div>
