@@ -11,7 +11,10 @@ class Reply
 
     public static function success()
     {
-        return response()->json([]);
+        return response()->json([
+            'success' => true,
+            'msg' => __('messages.successful'),
+        ], 200);
     }
 
     /** Return success response with Message
@@ -21,9 +24,19 @@ class Reply
     public static function successWithMessage($message, $status = 200)
     {
         return response()->json([
-            'status' => 'success',
-            'message' => trans($message)
+            'success' => true,
+            'msg' => $message
         ], $status);
+    }
+
+    public static function successWithData($data = [], $message, $status = 200)
+    {
+        $response = [
+            'success' => true,
+            'msg' =>  $message,
+            'data' => $data,
+        ];
+        return response()->json($response, $status);
     }
     /**
      * @param string $message
@@ -33,8 +46,8 @@ class Reply
     public static function error($message, $status = 400)
     {
         return response()->json([
-            'status' => 'fail',
-            'message' => trans($message)
+            'success' => 'fail',
+            'msg' => $message
         ], $status);
     }
 }

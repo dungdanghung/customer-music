@@ -1,0 +1,115 @@
+.listmusic {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    width: 329px;
+    background-color: rgba(255, 255, 255, 0.05);
+    flex-direction: column;
+    display: flex;
+    position: relative;
+
+    .nextsong__option {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        justify-content: center;
+
+        .nextsong__option-wrapper {
+            width: 230px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%); */
+            margin-left: 5px;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -ms-border-radius: 50px;
+            -o-border-radius: 50px;
+            font-size: 15px;
+
+            .nextsong__option-wrapper--active {
+                background-color: #816399;
+            }
+
+            .nextsong__option-wrapper-listplay {
+                padding: 5px 12px;
+                border-radius: 30px;
+            }
+        }
+
+        .nextsong__option-alarm,
+        .nextsong__option-more {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            margin-left: 7px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            .icon {
+                transform: scale(0.6);
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .wrap__nextsong__box {
+        flex: 1;
+        position: relative;
+
+        .nextsong__box {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            overflow-y: scroll;
+
+            .wrapnextsong__box {
+                padding: 0;
+                list-style: none;
+
+                .nextsong__fist {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    user-select: none;
+                }
+
+            }
+
+            .nextsong__last-heading {
+                color: #fff;
+                margin: 20px 0 10px 10px;
+                user-select: none;
+            }
+
+            .nextsong__last {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                user-select: none;
+                margin-bottom: 10px;
+
+                .nextsong__last-list {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                }
+            }
+        }
+
+        .nextsong__box::-webkit-scrollbar {
+            display: none;
+        }
+
+    }
+}

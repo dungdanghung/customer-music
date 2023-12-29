@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Collection|Comment[] $comments
  * @property Collection|Interact[] $interacts
  * @property Collection|Listeninghistory[] $listeninghistories
+ * @property Collection|TblHotSong[] $tbl_hot_songs
  *
  * @package App\Models
  */
@@ -82,5 +83,10 @@ class Song extends Model
 	public function listeninghistories()
 	{
 		return $this->hasMany(Listeninghistory::class);
+	}
+
+	public function tbl_hot_songs()
+	{
+		return $this->hasMany(TblHotSong::class);
 	}
 }

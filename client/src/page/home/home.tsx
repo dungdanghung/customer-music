@@ -1,9 +1,20 @@
+import { useUserRedux } from "../../redux/index"
 
-export default function Home() {
+
+function Home() {
+    const [user] = useUserRedux()
 
     return (
-        <div>
-            <h1>Home page</h1>
-        </div>
-    )
+        <>
+            <h1>home page</h1>
+            <div>
+                <p>Name</p>
+            </div>
+            <button>remove</button>
+            <button onclick={() => console.log(user)}>show</button>
+        </>
+    );
 }
+
+
+export default Home

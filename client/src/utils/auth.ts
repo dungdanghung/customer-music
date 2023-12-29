@@ -1,32 +1,49 @@
 import request from "./api_config";
 
+
 export async function reqLogin(username: string, password: string) {
+
     try {
-        const rs = await request.post("/auth/login", {
-            username: username,
-            password: password
-        })
-        if (rs.status == 200) {
-            return rs.data.token as string;
+        const formdata = new FormData()
+        formdata.append('username', username)
+        formdata.append('password', password)
+        const rs = await request.post("/auth/login", formdata)
+        if (rs?.data.success && rs?.data.data.token) {
+            window.localStorage.setItem('token', JSON.stringify(rs.data.data.token))
+            return true
         }
     } catch (error: any) {
-        throw new Error(error)
+        console.log('\x1b[31m%s\x1b[0m', `err users data: ${error.message}`)
     }
 }
 
+
 export async function reqregister(data: any) {
     try {
-        const rs = await request.post("/auth/register", {
-            firstname: data.firstname,
-            lastname: data.lastname,
-            username: data.username,
-            emailorphone: data.emailorphone,
-            gender: data.gender,
-            birth: data.birth,
-            password: data.password
-        })
-        if (rs.status == 200) return true
+        const formdate = new FormData()
+        formdate.append('firstName', data.firstName)
+        formdate.append('lastName', data.lastName)
+        formdate.append('userName', data.userName)
+        formdate.append('emailorphone', data.emailorphone)
+        formdate.append('gender', data.gender)
+        formdate.append('birth', data.birth)
+        formdate.append('password', data.password)
+        const rs = await request.post("/auth/register", formdate)
+        if (rs.data.success) {
+            return true
+        }
     } catch (error: any) {
         console.log('\x1b[31m%s\x1b[0m', `err users data: ${error.message}`)
+    }
+}
+
+export async function logout() {
+    try {
+        const rs = await request.post("/auth/logout")
+        if (rs.data.success) {
+            return true
+        }
+    } catch (error) {
+
     }
 }

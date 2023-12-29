@@ -20,11 +20,12 @@ return new class extends Migration
             $table->bigInteger('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('types');
             $table->string('image');
+            $table->enum('status', ['active', 'pending', 'disable'])->default('pending');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('heart');
+            $table->bigInteger('heart')->nullable()->default(0);
             $table->string('singer');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

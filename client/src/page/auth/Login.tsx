@@ -1,59 +1,51 @@
 import { createSignal } from "solid-js";
 import { reqLogin } from "../../utils/auth"
-import { getuser } from "../../utils/user"
-import { useUserRedux } from "../../redux/index"
 import { useNavigate } from "@solidjs/router"
-import "./Login.scss"
+import style from "../../style/login.module.css"
+import { createMutation } from "@tanstack/solid-query"
 
 export default function Login() {
     const [username, setusername] = createSignal('')
     const [password, setpassword] = createSignal('')
     const navigate = useNavigate();
-    const [, setuser] = useUserRedux()
+
+    const { mutate } = createMutation(() => ({
+        mutationFn: () => reqLogin(username(), password()).then((rs) => {
+            rs ? navigate('/') : null
+        }),
+    }));
 
     function HandleLogin() {
-        reqLogin(username(), password())
-            .then((rs) => {
-                if (rs) {
-                    window.localStorage.setItem('token', JSON.stringify(rs))
-                    getuser()
-                        .then((rs) => {
-                            if (rs) {
-                                setuser(rs)
-                                navigate("/home");
-                            }
-                        })
-                }
-            })
+        mutate()
     }
 
     return (
-        <div class="login">
-            <div class="container">
-                <div class="text">
+        <div class={style["login"]}>
+            <div class={style["container"]}>
+                <div class={style["text"]}>
                     Login Form
                 </div>
-                <div class="wrap-container">
-                    <div class="data">
+                <div class={style["wrap-container"]}>
+                    <div class={style["data"]}>
                         <label>UserName</label>
-                        <input type="text" value={username()} required onChange={(e) => { setusername(e.target.value) }} />
+                        <input class={style["input"]} type="text" value={username()} required onChange={(e) => { setusername(e.target.value) }} />
                     </div>
-                    <div class="data">
+                    <div class={style["data"]}>
                         <label>Password</label>
-                        <input type="password" value={password()} required onChange={(e) => { setpassword(e.target.value) }} />
+                        <input class={style["input"]} type="password" value={password()} required onChange={(e) => { setpassword(e.target.value) }} />
                     </div>
-                    <div class="forgot-pass">
-                        <a href="#">Forgot Password?</a>
-                    </div>
-                    <div class="btn">
-                        <div class="inner"></div>
-                        <button onClick={HandleLogin} >Login</button>
-                    </div>
-                    <div class="signup-link">
-                        Not a member? <a href="/register">sign up now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class={style["forgot-pass"]} >
+                        <a class={style["forgrot_pass"]} href="#">Forgot Password?</a>
+                    </div >
+                    <div class={style["btn"]} >
+                        <div class={style["inner"]} ></div >
+                        <button class={style['btn_login']} onClick={HandleLogin} >Login</button>
+                    </div >
+                    <div class={style["signup-link"]} >
+                        Not a member ? <a class={style['signup_text']} href="/auth/register">sign up now</a>
+                    </div >
+                </div >
+            </div >
+        </div >
     )
 }

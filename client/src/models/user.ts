@@ -5,7 +5,6 @@ export interface user {
     "laseName": string,
     "userName": string,
     "birth": Date,
-    "role_id": number,
     "gender": number,
     "email": string | null,
     "phoneNumber": string | null,

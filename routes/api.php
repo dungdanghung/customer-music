@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutherController;
+use App\Http\Controllers\MusicController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -19,10 +20,17 @@ use App\Http\Controllers\UserController;
 Route::prefix('/auth')->controller(AutherController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/register', 'register');
-    Route::post('logout', 'logout')->middleware('auth:sanctum');
+    Route::post('/logout', 'logout')->middleware('auth:sanctum');
     Route::post('change-password', 'changePassword')->middleware('auth:sanctum');
 });
 
 Route::prefix('/user')->controller(UserController::class)->group(function () {
     Route::get('/getuser', 'getuser')->middleware('auth:sanctum');
+});
+
+Route::prefix('/music')->controller(MusicController::class)->group(function () {
+    Route::get('/getsonghot', 'getSongHot');
+    Route::get('/getsonghistory', 'getSongHistory')->middleware('auth:sanctum');
+    Route::get('/getsonginteract', 'getSongInteract')->middleware('auth:sanctum');
+    Route::post('/upload', 'store')->middleware('auth:sanctum');
 });

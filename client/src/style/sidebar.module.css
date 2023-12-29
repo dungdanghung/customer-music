@@ -1,0 +1,148 @@
+.wrapcontentmusicpage {
+    display: flex;
+    overflow: hidden;
+    flex: 1 1;
+
+    .sidebare {
+        width: 240px;
+        flex-direction: column;
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+        .sidebar_logo {
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+
+            .wrap-logo {
+                width: 70%;
+                height: 100%;
+
+                .logo {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        .sidebar__persional,
+        .sidebar__library,
+        .sidebar__library-bot {
+            margin-bottom: 15px;
+            position: relative;
+
+            .sidebar__list,
+            .sidebar__library-top {
+                list-style: none;
+                padding-left: 0;
+                margin: 0;
+
+                .sidebar__item {
+                    color: #fff;
+                    opacity: 0.8;
+                    text-decoration: none;
+                    height: 38px;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                    padding-left: 44px;
+                    cursor: pointer;
+                    font-size: 19px;
+                    gap: 5px;
+
+                    .text {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.1);
+                    }
+                }
+
+                .sidebar__item-active {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-left: 4px solid #ED2B91;
+                    padding-left: 41px;
+                }
+
+                .sidebar__item-radio {
+                    .sidebar__item-radio-item {
+                        background-color: red;
+                        padding: 0 3px;
+                        margin-left: 6px;
+                        border-radius: 6px;
+                    }
+                }
+            }
+
+            .sidebar__library-bot-heading {
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 30px 44px 10px 44px;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+        }
+
+        .distance {
+            border-top: 1px solid #ddd;
+            height: 15px;
+            margin: 0 24px;
+        }
+
+        .sidebar__library-center {
+            height: max-content;
+            padding: 8px 0;
+            background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+            margin: 12px 36px 0 36px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            .sidebar__library-center-vip-heading {
+                color: #fff;
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: 600;
+            }
+
+            .js__toast {
+                text-decoration: none;
+                background-color: #ffdb00;
+                padding: 6px;
+                border-radius: 20px;
+                margin: 0 20px;
+            }
+        }
+
+        .sidebar__library {
+            user-select: none;
+            user-select: none;
+            flex: 1 1;
+            position: relative;
+
+            .wrap__sidebar__library {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                overflow-y: scroll;
+            }
+        }
+
+        .wrap__sidebar__library::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
