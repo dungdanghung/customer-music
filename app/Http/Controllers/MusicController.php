@@ -52,7 +52,7 @@ class MusicController extends Controller
 			$nameSong = time() . $request->user()->id . '_' . $request->filesong->getClientOriginalName();
 			$request->fileimage->storeas('img/song/image', $nameImage);
 			$request->filethumbnail->storeas('img/song/thumbnail', $namethumbnail);
-			$request->file('filesong')->storeAs('data/', $nameSong, 'song');
+			$request->file('filesong')->storeAs('song/data', $nameSong);
 
 			Song::create([
 				'song_name' => $request->songname,

@@ -13,12 +13,12 @@ return new class extends Migration
 	{
 		Schema::create('follows', function (Blueprint $table) {
 			$table->id();
-			$table->bigInteger('user_id');
+			$table->bigInteger('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->bigInteger('follow_userID')->unsigned();
 			$table->foreign('follow_userID')->references('id')->on('users');
 			$table->bigInteger('check_seen');
-			$table->bigInteger('song_id');
+			$table->bigInteger('song_id')->unsigned();
 			$table->foreign('song_id')->references('id')->on('songs');
 			$table->timestamps();
 		});

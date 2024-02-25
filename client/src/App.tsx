@@ -5,7 +5,6 @@ import Register from "./page/auth/Register";
 const LayoutHome = lazy(() => import('./layout/LayoutHome'))
 const LayoutUser = lazy(() => import('./layout/layoutUser'))
 const Home = lazy(() => import('./page/home/home'))
-const Test = lazy(() => import('./page/test/test'))
 
 import style from "./style/index.module.css"
 import profile from "./page/user/profile";
@@ -18,7 +17,6 @@ function App() {
 			<Routes>
 				<Route path="/" element={<LayoutHome />}>
 					<Route path="/" element={<Home />} />
-					<Route path="/test" element={<Test />} />
 				</Route>
 				<Route path="/auth">
 					<Route path="/login" component={Login} />

@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->string('song_file');
 			$table->date('date');
 			$table->string('thumbnail');
-			$table->bigInteger('type_id')->unsigned();
+			$table->bigInteger('type_id')->nullable()->unsigned();
 			$table->foreign('type_id')->references('id')->on('types');
 			$table->string('image');
 			$table->enum('status', ['active', 'pending', 'disable'])->default('pending');

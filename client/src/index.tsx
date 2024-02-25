@@ -7,18 +7,18 @@ const root = document.getElementById('root')
 import { SolidQueryDevtools } from '@tanstack/solid-query-devtools'
 
 render(
-    () => {
-        const queryClient = new QueryClient()
+	() => {
+		const queryClient = new QueryClient()
 
-        return (
-            <Router >
-                <QueryClientProvider client={queryClient}>
-                    <App />
-                    <SolidQueryDevtools initialIsOpen={false} />
-                </QueryClientProvider>
-                <div id='loader'></div>
-            </Router>
-        )
-    },
-    root!
+		return (
+			<Router >
+				<QueryClientProvider client={queryClient}>
+					<App />
+					<SolidQueryDevtools initialIsOpen={false} />
+				</QueryClientProvider>
+				<div id='loader'></div>
+			</Router>
+		)
+	},
+	root!
 );
